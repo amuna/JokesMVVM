@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="8dp"
+    android:layout_marginStart="8dp"
+    android:layout_marginTop="8dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="8dp">
+
+        <ImageView
+            android:id="@+id/imageViewfavourite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_star_yellow"
+            android:layout_alignParentEnd="true"
+            android:onClick="removeJokeFromDatabse"
+            android:clickable="true" />
+
+        <TextView
+            android:id="@+id/textViewSetup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:text="Title"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+            android:layout_toStartOf="@+id/imageViewfavourite"
+            android:layout_alignParentStart="true"
+            android:ellipsize="end"/>
+
+        <TextView
+            android:id="@+id/textViewPunchline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textViewSetup"
+            android:text="Description"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"/>
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>
