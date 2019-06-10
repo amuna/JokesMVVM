@@ -18,7 +18,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class JokeAdapter extends RecyclerView.Adapter<JokeAdapter.NoteHolder> {
     private List<Joke> jokes = new ArrayList<>();
-    public int pos;
     private RecyclerViewClickListener listener;
 
 

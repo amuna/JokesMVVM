@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorAccent">
+    android:layout_height="match_parent">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:layout_marginHorizontal="60dp"
+        android:layout_margin="10dp"
         android:elevation="10dp"
-        android:minHeight="100dp"
-        android:background="@color/colorAccent">
+        android:minHeight="100dp">
 
         <RelativeLayout
             android:id="@+id/loadingPanel"
@@ -33,43 +31,44 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
+            android:background="@color/colorPrimary"
             android:elevation="10dp"
             android:minHeight="100dp"
-            android:visibility="visible"
-            android:background="@color/colorAccent">
+            android:visibility="visible">
 
             <ImageView
                 android:id="@+id/saveJokeBtn"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
+                android:layout_alignParentEnd="true"
                 android:layout_gravity="top|right"
                 android:adjustViewBounds="true"
-                android:onClick="saveJoke"
                 android:clickable="true"
-                android:layout_alignParentEnd="true"
+                android:onClick="saveJoke"
                 android:src="@drawable/ic_star_border_black_24dp" />
 
-            <TextView
-                android:id="@+id/textViewSingleJoke"
-                android:layout_width="wrap_content"
-                android:layout_toLeftOf="@id/saveJokeBtn"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginHorizontal="5dp"
-                android:textSize="30sp" />
+                <TextView
+                    android:id="@+id/textViewSingleJoke"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_toStartOf="@id/saveJokeBtn"
+                    android:textSize="30sp"
+                    android:layout_toLeftOf="@id/saveJokeBtn" />
         </RelativeLayout>
 
     </androidx.cardview.widget.CardView>
 
-
-    <Button
-        android:id="@+id/button"
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnNewJoke"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/cardView"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="60dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="20dp"
+        android:clickable="true"
         android:onClick="showNewJoke"
-        android:text="New Joke" />
+        app:srcCompat="@android:drawable/ic_input_add"
+        android:backgroundTint="@color/colorPrimary"/>
 
 </RelativeLayout>

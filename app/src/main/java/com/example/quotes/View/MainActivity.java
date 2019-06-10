@@ -27,7 +27,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class MainActivity extends AppCompatActivity implements HomeFragment.FragmentHomeListener, FavouriteFragment.FragmentFavouriteListener, RecyclerViewClickListener {
+public class MainActivity extends AppCompatActivity  {
     private Fragment homeFragment;
     private Fragment favouriteFragment;
 
@@ -37,8 +37,8 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.Frag
     private boolean jokeSaved = false;
     private RelativeLayout jokePanel;
 
-    private RecyclerViewClickListener listener = this;
-    private JokeAdapter adapter = new JokeAdapter(listener);
+   // private RecyclerViewClickListener listener = this;
+    //private JokeAdapter adapter = new JokeAdapter(listener);
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.Frag
                 homeFragment).commit();
 
         //observers
-        jokeViewModel.getLoading().observe(this, new Observer<Boolean>() {
+        /*jokeViewModel.getLoading().observe(this, new Observer<Boolean>() {
             @Override
             public void onChanged(Boolean aBoolean) {
                 //Loading
@@ -70,14 +70,7 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.Frag
                 jokePanel.setVisibility(View.VISIBLE);
                 ((HomeFragment) homeFragment).setJoke(jokeViewModel.getSingleJoke());
             }
-        });
-
-        jokeViewModel.getAllSavedJokes().observe(this, new Observer<List<Joke>>() {
-            @Override
-            public void onChanged(List<Joke> jokes) {
-                adapter.setJokes(jokes);
-            }
-        });
+        });*/
     }
 
     //Functions handling user interaction
@@ -104,47 +97,8 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.Frag
             };
 
 
-    public void showNewJoke(View view) {
-        jokeSaved = false;
-        jokeViewModel.getSingleJokeAPI();
-    }
-
     public void saveJoke(View view) {
-        if (!jokeSaved) {
-            saveJokeBtn.setImageResource(R.drawable.ic_star_yellow);
-            jokeSaved = true;
-            jokeViewModel.saveJoke(jokeViewModel.getSingleJoke());
-            Toast.makeText(this, "Joke saved.", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        jokeSaved = false;
-        saveJokeBtn.setImageResource(R.drawable.ic_star_border_black_24dp);
-        jokeViewModel.deleteJoke(jokeViewModel.getSingleJoke());
-        Toast.makeText(this, "Joke removed.", Toast.LENGTH_SHORT).show();
-        return;
+
     }
 
-    //deleting Joke from database
-    @Override
-    public void onViewClicked(View v, int position) {
-        jokeViewModel.deleteJoke(adapter.getJokeAt(position));
-    }
-
-    //Interfaces to prevent race conditions between activity and fragment
-    @Override
-    public void onCompleteFavourite() {
-        RecyclerView recyclerView = findViewById(R.id.recyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setHasFixedSize(false);
-        recyclerView.setAdapter(adapter);
-    }
-
-    @Override
-    public void onCompleteHome() {
-        saveJokeBtn = (ImageView) findViewById(R.id.saveJokeBtn);
-        loadingPanel = (RelativeLayout) findViewById(R.id.loadingPanel);
-        jokePanel = (RelativeLayout) findViewById(R.id.jokePanel);
-        jokeSaved = false;
-        showNewJoke(null);
-    }
 }
